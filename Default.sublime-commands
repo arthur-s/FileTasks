@@ -1,0 +1,6 @@
+[
+    {
+        "caption": "FileTasks: run task",
+        "command": "file_tasks_run_task"
+    }
+]
