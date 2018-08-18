@@ -1,0 +1,23 @@
+{
+    "schema_version": "3.0.0",
+    "dependencies": [],
+    "packages": [{
+        "name": "FileTasks",
+        "details": "https://github.com/arthur-s/FileTasks",
+        "readme": "https://github.com/arthur-s/FileTasks/blob/master/README.md",
+        "issues": "https://github.com/arthur-s/FileTasks/issues",
+        "author": "arthur-s",
+        "releases": [
+            {
+                "platforms": "*",
+                "sublime_text": ">=3000",
+                "tags": true
+            }
+        ],
+        "labels": [
+            "tasks",
+            "commands",
+            "actions"
+        ]
+    }]
+}
