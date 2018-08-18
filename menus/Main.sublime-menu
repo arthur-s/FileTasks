@@ -16,7 +16,7 @@
                                 "caption": "Settings",
                                 "command": "edit_settings", "args":
                                 {
-                                    "base_file": "${packages}/Sublime-FileTasks/FileTasks.sublime-settings",
+                                    "base_file": "${packages}/FileTasks/FileTasks.sublime-settings",
                                     "default": "// FileTasks Settings - User\n{\n\t$0\n}\n"
                                 }
                             }

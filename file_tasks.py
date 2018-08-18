@@ -47,7 +47,7 @@ class FileTasksRunTaskCommand(sublime_plugin.WindowCommand):
     def run(self):
         self._tasks = settings.get('tasks')
         if self._tasks is None:
-            window.status_message('Couldnt load settings')
+            self.window.status_message('Couldnt load settings')
         
         self._items = [k for k in self._tasks]
 
