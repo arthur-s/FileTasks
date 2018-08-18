@@ -8,7 +8,7 @@ settings = sublime.load_settings("FileTasks.sublime-settings")
 
 
 
-def get_replaced_cmd(cmd_str, file_full_path, custom_replace=None):
+def get_replaced_cmd(cmd_str, file_full_path, workdir):
     
     filedir, filename = os.path.split(file_full_path)
 
@@ -21,16 +21,8 @@ def get_replaced_cmd(cmd_str, file_full_path, custom_replace=None):
     if '__filedir__' in cmd_str:
         cmd_str = cmd_str.replace('__filedir__', filedir)
 
-    # custom replacements
-    if custom_replace is None:
-        custom_replace = {}
-    for replacement in custom_replace:
-        if replacement in cmd_str:
-            cmd_str = cmd_str.replace(replacement, custom_replace[replacement])
-
     # relative paths, if workdir was defined
-    if '__workdir__' in custom_replace:
-        workdir = custom_replace['__workdir__']
+    if workdir is not None:
         workdir = os.path.normpath(workdir) + '/'
         splitted = file_full_path.split(workdir)
         if len(splitted) == 2:
@@ -60,12 +52,16 @@ class FileTasksRunTaskCommand(sublime_plugin.WindowCommand):
             key = self._items[index]
             tasks_obj = self._tasks[key]
             command = tasks_obj.get('command')
-            # print(command)
-            custom_replace = self._tasks[key].get('custom_replace')
+            workdir = tasks_obj.get('workdir')
+
+            if command is None:
+                self.window.status_message('command is not set')
+                return
 
             view = self.window.active_view()
             filename = view.file_name()
-            cmd = get_replaced_cmd(command, filename, custom_replace)
+
+            cmd = get_replaced_cmd(command, filename, workdir)
             # print('Final cmd', cmd)
             if cmd is not False:
                 cmd = shlex.split(cmd)
