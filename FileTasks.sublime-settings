@@ -1,12 +1,10 @@
 // FileTasks Settings - User
+// https://github.com/arthur-s/FileTasks
 {
     "tasks": {
         "cp-test": {
             "command": "cp __file__ /tmp/__projectname__/__relative_file_path__",
-            "custom_replace": {
-                "__workdir__": "/home/arthur/work",
-                "__projectname__": "someproject"
-            }
+            "workdir": "/home/arthur/work"
         },
         "touch-test": {
             "command": "touch /home/arthur/__filename__"
