@@ -4,8 +4,6 @@ import sublime
 import sublime_plugin
 import subprocess
 
-settings = sublime.load_settings("FileTasks.sublime-settings")
-
 
 
 def get_replaced_cmd(cmd_str, file_full_path, workdir):
@@ -37,7 +35,9 @@ def get_replaced_cmd(cmd_str, file_full_path, workdir):
 
 class FileTasksRunTaskCommand(sublime_plugin.WindowCommand):
     def run(self):
+        settings = sublime.load_settings("FileTasks.sublime-settings")
         self._tasks = settings.get('tasks')
+        
         if self._tasks is None:
             self.window.status_message('Couldnt load settings')
         
